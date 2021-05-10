@@ -23,6 +23,9 @@ const LoginScreen = () => {
                 <Input placeholder="Email"  autoFocus type="email" value={email} onChangeText={(text) => setEmail(text)} />
                 <Input placeholder="Password" secureTextEntry autoFocus type="password" value={password} onChangeText={(text) => setPassword(text)} />
             </View>
+            {/* in order to style anything, you have to wrap it in the containerStyle and then add styles.something*/}
+            <Button containerStyle={styles.button} title="Login" />
+            <Button containerStyle={styles.button} type="outline" title="Register" />
         </View>
     )
 }
@@ -31,6 +34,9 @@ export default LoginScreen
 
 const styles = StyleSheet.create({
     inputContainer: {
+
+    },
+    button: {
 
     }
 });
