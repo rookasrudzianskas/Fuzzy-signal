@@ -2,15 +2,16 @@ import React, {useState} from "react";
 import {KeyboardAvoidingView, StyleSheet, Text, View} from "react-native";
 import {Button, Input, Image} from "react-native-elements";
 import {StatusBar} from "expo-status-bar";
+import { NavigationContainer } from '@react-navigation/native';
 
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
 // sign in function with on PRess from the button
-    const signIn = () => {
+    const signIn = ({ navigation }) => {
 
     }
 
@@ -30,7 +31,8 @@ const LoginScreen = () => {
             </View>
             {/* in order to style anything, you have to wrap it in the containerStyle and then add styles.something*/}
             <Button containerStyle={styles.button} onPress={signIn} title="Login" />
-            <Button containerStyle={styles.button} type="outline" title="Register" />
+            {/* with naviagation we can naviagate to the another screens by giving the name of the screen*/}
+            <Button containerStyle={styles.button} onPress={() => navigation.navigate("Register")} type="outline" title="Register" />
             <View style={{ height: 100 }} />
         </KeyboardAvoidingView>
     )
@@ -47,9 +49,10 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
     },
     inputContainer: {
-
+        width: 300,
     },
     button: {
-
+        width: 200,
+        marginTop: 10,
     }
 });
