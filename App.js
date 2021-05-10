@@ -11,7 +11,7 @@ const Stack = createStackNavigator();
 
 const globalScreenOptions = {
     headerStyle: {backgroundColor: "#2C6BED"},
-    headerTitleStyle: {color: "while"},
+    headerTitleStyle: {color: "white"},
     headerTintColor: "white",
 };
 
