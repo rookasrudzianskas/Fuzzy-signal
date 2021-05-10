@@ -50,9 +50,10 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
     },
     inputContainer: {
-
+        width: 300,
     },
     button: {
-
+        width: 200,
+        marginTop: 10,
     }
 })
