@@ -10,6 +10,7 @@ import RegisterScreen from "./screens/RegisterScreen";
 // this is just a routing initialization
 const Stack = createStackNavigator();
 
+// this is the header style
 const globalScreenOptions = {
     headerStyle: {backgroundColor: "#2C6BED"},
     headerTitleStyle: {color: "white"},
@@ -20,15 +21,18 @@ const globalScreenOptions = {
 export default function App() {
   return (
       <NavigationContainer>
+          {/* this is the header*/}
           <Stack.Navigator screenOptions={globalScreenOptions}>
               {/* with stack screen we are adding the screens for people to go in app*/}
               <Stack.Screen name="Login" component={LoginScreen}/>
+              {/* this is the register screen*/}
               <Stack.Screen name="Register" component={RegisterScreen}/>
           </Stack.Navigator>
       </NavigationContainer>
   );
 }
 
+// writing styles in heres
 const styles = StyleSheet.create({
   container: {
     flex: 1,
