@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import {KeyboardAvoidingView, StyleSheet, Text, View} from "react-native"
+import { KeyboardAvoidingView, StyleSheet, View} from "react-native"
 import {StatusBar} from "expo-status-bar";
-import {Input} from "react-native-elements";
+import {Button, Input, Text} from "react-native-elements";
 
 const RegisterScreen = ({ navigation }) => {
 
@@ -27,6 +27,14 @@ const RegisterScreen = ({ navigation }) => {
                 <Input placeholder="Password" type="password" secureTextEntry value={password} onChangeText={(text) => setPassword(text)}/>
                 <Input placeholder="Profile Picture URL (optional)" type="text" value={imageUrl} onChangeText={(text) => setImageUrl(text)} onSubmitEditing={register}/>
             </View>
+
+            <Button
+                raised
+                onPress={register}
+                title="Register"
+                containerStyle={styles.button}
+            />
+            <View style={{ height: 100 }} />
         </KeyboardAvoidingView>
     )
 }
@@ -35,9 +43,16 @@ export default RegisterScreen
 
 const styles = StyleSheet.create({
     container: {
-
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 10,
+        backgroundColor: "white",
     },
     inputContainer: {
 
     },
+    button: {
+
+    }
 })
