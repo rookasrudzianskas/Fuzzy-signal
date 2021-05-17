@@ -3,7 +3,7 @@ import {KeyboardAvoidingView, StyleSheet, View} from "react-native";
 import {Button, Image, Input} from "react-native-elements";
 import {StatusBar} from "expo-status-bar";
 import {auth} from "../firebase";
-
+import firebase from "firebase";
 // we pass the navigation, because we need to navigate to and back from this page
 const LoginScreen = ({ navigation }) => {
     // states, to store the email and the password
@@ -23,8 +23,8 @@ const LoginScreen = ({ navigation }) => {
 
 // sign in function with on PRess from the button
     const signIn = ({ navigation }) => {
-
-    }
+        auth.signInWithEmailAndPassword(email, password).catch(error => alert(error))
+    };
 
     return (
         // keyboardavoidingview is the view, then it goes up, then the keyboard shows up. it adds some padding
@@ -42,7 +42,7 @@ const LoginScreen = ({ navigation }) => {
             {/* from the input and sets to the state*/}
             <View style={styles.inputContainer}>
                 <Input placeholder="Email"  autoFocus type="email" value={email} onChangeText={(text) => setEmail(text)} />
-                <Input placeholder="Password" secureTextEntry autoFocus type="password" value={password} onChangeText={(text) => setPassword(text)} />
+                <Input placeholder="Password" secureTextEntry autoFocus type="password" value={password} onChangeText={(text) => setPassword(text)} onSubmitEditing={signIn}/>
             </View>
             {/* in order to style anything, you have to wrap it in the containerStyle and then add styles.something*/}
             <Button containerStyle={styles.button} onPress={signIn} title="Login" />
