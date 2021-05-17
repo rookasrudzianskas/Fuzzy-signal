@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useLayoutEffect, useState} from "react";
 import { KeyboardAvoidingView, StyleSheet, View} from "react-native"
 import {StatusBar} from "expo-status-bar";
 import {Button, Input, Text} from "react-native-elements";
@@ -9,6 +9,13 @@ const RegisterScreen = ({ navigation }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [imageUrl, setImageUrl] = useState("");
+
+    useLayoutEffect(() => {
+    //    then navigation changes, we have to change the screen
+        navigation.setOptions({
+            headerBackTitle: "Back to Login"
+        })
+    }, [navigation])
 
     // register function. which gets fired, then the button is pressed down
     const register = () => {
