@@ -28,7 +28,7 @@ export default function App() {
               <Stack.Screen name="Login" component={LoginScreen}/>
               {/* this is the register screen*/}
               <Stack.Screen name="Register" component={RegisterScreen}/>
-              <Stack.Screen name="Home" initialRouteName="Home" component={HomeScreen}/>
+              <Stack.Screen name="Home"  component={HomeScreen}/>
           </Stack.Navigator>
       </NavigationContainer>
   );
