@@ -3,7 +3,7 @@ import {SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from
 import CustomListItem from "../components/CustomListItem";
 import {Avatar} from "react-native-elements";
 import { auth, db } from "../firebase";
-import { AntDesign, SimpleLineIcons } from "@expo/vector-icons";
+import {AntDesign, Entypo, Foundation, SimpleLineIcons} from "@expo/vector-icons";
 
 const HomeScreen = ({ navigation }) => {
 
@@ -38,7 +38,7 @@ const HomeScreen = ({ navigation }) => {
                     </TouchableOpacity>
 
                     <TouchableOpacity activeOpacity={0.5}>
-                        <AntDesign name="pencil" size={24} color="black" />
+                        <SimpleLineIcons name="pencil" size={24} color="black" />
                     </TouchableOpacity>
 
                 </View>
