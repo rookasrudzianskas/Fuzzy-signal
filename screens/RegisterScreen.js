@@ -21,10 +21,10 @@ const RegisterScreen = ({ navigation }) => {
     // register function. which gets fired, then the button is pressed down
     const register = () => {
         auth.createUserWithEmailAndPassword(email, password).then(authUser => {
-            authUser.user.update({
+            authUser.user.updateProfile({
                 displayName: name,
                 photoURL: imageUrl || "https://www.vhv.rs/dpng/d/505-5058560_person-placeholder-image-free-hd-png-download.png"
-            })
+            });
         }).catch(error => alert(error))
     };
 
