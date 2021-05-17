@@ -1,14 +1,26 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {KeyboardAvoidingView, StyleSheet, Text, View} from "react-native";
 import {Button, Input, Image} from "react-native-elements";
 import {StatusBar} from "expo-status-bar";
 import { NavigationContainer } from '@react-navigation/native';
+import {auth} from "../firebase";
 
 // we pass the navigation, because we need to navigate to and back from this page
 const LoginScreen = ({ navigation }) => {
     // states, to store the email and the password
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    useEffect(() => {
+
+        const unsubscribe = auth.onAuthStateChanged((authUser) => {
+            if(authUser) {
+                navigation.replace("Home")
+            }
+        });
+        return unsubscribe;
+
+    }, []);
 
 // sign in function with on PRess from the button
     const signIn = ({ navigation }) => {

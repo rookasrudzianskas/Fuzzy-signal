@@ -2,6 +2,7 @@ import React, {useLayoutEffect, useState} from "react";
 import { KeyboardAvoidingView, StyleSheet, View} from "react-native"
 import {StatusBar} from "expo-status-bar";
 import {Button, Input, Text} from "react-native-elements";
+import {auth, db} from "../firebase";
 
 const RegisterScreen = ({ navigation }) => {
     // defining states for all the inputs
@@ -19,8 +20,13 @@ const RegisterScreen = ({ navigation }) => {
 
     // register function. which gets fired, then the button is pressed down
     const register = () => {
-
-    }
+        auth.createUserWithEmailAndPassword(email, password).then(authUser => {
+            authUser.user.update({
+                displayName: name,
+                photoURL: imageUrl || "https://www.vhv.rs/dpng/d/505-5058560_person-placeholder-image-free-hd-png-download.png"
+            })
+        }).catch(error => alert(error))
+    };
 
     return (
         // the view, which goes up, then the keyboard shows up
