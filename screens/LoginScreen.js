@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from "react";
-import {KeyboardAvoidingView, StyleSheet, Text, View} from "react-native";
-import {Button, Input, Image} from "react-native-elements";
+import {KeyboardAvoidingView, StyleSheet, View} from "react-native";
+import {Button, Image, Input} from "react-native-elements";
 import {StatusBar} from "expo-status-bar";
-import { NavigationContainer } from '@react-navigation/native';
 import {auth} from "../firebase";
 
 // we pass the navigation, because we need to navigate to and back from this page
@@ -13,14 +12,12 @@ const LoginScreen = ({ navigation }) => {
 
     useEffect(() => {
 
-        const unsubscribe = auth.onAuthStateChanged((authUser) => {
+        return auth.onAuthStateChanged((authUser) => {
             console.log(authUser)
-            if(authUser) {
-
+            if (authUser) {
                 navigation.replace("Home")
             }
         });
-        return unsubscribe;
 
     }, []);
 
