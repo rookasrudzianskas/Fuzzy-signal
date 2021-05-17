@@ -3,8 +3,15 @@ import {SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from
 import CustomListItem from "../components/CustomListItem";
 import {Avatar} from "react-native-elements";
 import { auth, db } from "../firebase";
+import { AntDesign, SimpleLineIcons } from "@expo/vector-icons";
 
 const HomeScreen = ({ navigation }) => {
+
+    const signOutUser = () => {
+        auth.signOut().then(() => {
+            navigation.replace('Login')
+        });
+    };
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -12,12 +19,18 @@ const HomeScreen = ({ navigation }) => {
             headerStyle: { backgroundColor: "#fff" },
             headerTitleStyle: { color: "black" },
             headerTintColor: "black",
-            headerLeft: () =>
+            headerLeft: () => (
                 <View style={{ marginLeft: 20 }} >
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={signOutUser} activeOpacity={0.5}>
                     <Avatar rounded source={{uri: auth?.currentUser?.photoURL }}/>
                     </TouchableOpacity>
-                </View>,
+                </View>
+            ),
+            headerRight: () => {
+                <View style={{}}>
+
+                </View>;
+            }
         });
     }, []);
 
