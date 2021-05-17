@@ -7,6 +7,7 @@ import {createStackNavigator} from "@react-navigation/stack";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import HomeScreen from "./screens/HomeScreen";
+import AddChatScreen from "./screens/AddChatScreen";
 
 // this is just a routing initialization
 const Stack = createStackNavigator();
@@ -29,6 +30,7 @@ export default function App() {
               {/* this is the register screen*/}
               <Stack.Screen name="Register" component={RegisterScreen}/>
               <Stack.Screen name="Home" component={HomeScreen}/>
+              <Stack.Screen name="Add Chat" component={AddChatScreen}/>
           </Stack.Navigator>
       </NavigationContainer>
   );

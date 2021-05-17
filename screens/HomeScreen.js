@@ -37,7 +37,7 @@ const HomeScreen = ({ navigation }) => {
                         <AntDesign name="camerao" size={24} color="black" />
                     </TouchableOpacity>
 
-                    <TouchableOpacity activeOpacity={0.5}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Add Chat')} activeOpacity={0.5}>
                         <SimpleLineIcons name="pencil" size={24} color="black" />
                     </TouchableOpacity>
 
