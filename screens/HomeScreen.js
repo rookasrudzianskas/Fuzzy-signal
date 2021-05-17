@@ -26,13 +26,25 @@ const HomeScreen = ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
             ),
-            headerRight: () => {
-                <View style={{}}>
+            headerRight: () => (
+                <View style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    width: 80,
+                    marginRight: 20,
+                }}>
+                    <TouchableOpacity activeOpacity={0.5}>
+                        <AntDesign name="camerao" size={24} color="black" />
+                    </TouchableOpacity>
 
-                </View>;
-            }
+                    <TouchableOpacity activeOpacity={0.5}>
+                        <AntDesign name="pencil" size={24} color="black" />
+                    </TouchableOpacity>
+
+                </View>
+        ),
         });
-    }, []);
+    }, [navigation]);
 
     return (
         <SafeAreaView>
