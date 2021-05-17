@@ -14,6 +14,10 @@ const CustomListItem = () => {
                 <ListItem.Title style={{ fontWeight: "800" }}>
                     Rookas Chat
                 </ListItem.Title>
+
+                <ListItem.Subtitle numberOfLines={1}  ellipsizeMode="tail">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia.
+                </ListItem.Subtitle>
             </ListItem.Content>
         </ListItem>
     )
