@@ -16,10 +16,20 @@ const firebaseConfig = {
 
 let app;
 // check if the app is already initialized
-// if the app is not initilialized already
+// if the app is not initialized already
 if(firebase.apps.length === 0){
     app = firebase.initializeApp(firebaseConfig)
+} else {
+    // if it is already initialized, do not initialize again
+    app = firebase.app();
 }
+
+const db = app.firestore();
+const auth = firebase.auth();
+
+export { auth, db }
+
+
 
 
 
