@@ -19,7 +19,7 @@ const ChatScreen = ({ navigation, route }) => {
 
     const [input, setInput] = useState('');
     const [messages, setMessages] = useState('');
-    console.log(messages)
+    console.log(messages);
     const sendMessage = () => {
         Keyboard.dismiss();
         // we haev params in here
@@ -39,8 +39,8 @@ const ChatScreen = ({ navigation, route }) => {
     useLayoutEffect(() => {
         const unsubscribe = db.collection("chats").doc(route.params.id).collection("messages").orderBy("timestamp", "desc").onSnapshot(snapshot => {
             setMessages(
-                snapshot.docs?.map(doc => ({
-                    id:  doc.id,
+                snapshot.docs?.map((doc) => ({
+                    id: doc.id,
                     data: doc.data(),
                 }))
             )
@@ -79,7 +79,7 @@ const ChatScreen = ({ navigation, route }) => {
               </View>
             ),
         });
-    }, [navigation]);
+    }, [navigation, messages]);
 
     // style={{ flex: 1, backgroundImage: "https://theabbie.github.io/blog/assets/official-whatsapp-background-image.jpg" }}
     return (
@@ -90,28 +90,27 @@ const ChatScreen = ({ navigation, route }) => {
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} >
                     <>
                     <ScrollView>
-                        {/*{messages.map(({ id, data}) => {*/}
-                        {/*    <View>*/}
-                        {/*        <Text>{data.message}</Text>*/}
-                        {/*    </View>*/}
-                        {/*})}*/}
-                        {messages.map(({ id, data}) =>
-                            data.email === auth.currentUser.email ? (
-                                <View key={id} style={styles.receiver}>
-                                             <Avatar />
-                                        <Text style={styles.receiverText}>
-                                             {data.message}
-                                         </Text>
-                                </View>
-                            ) : (
-                                <View style={styles.sender}>
-                                    <Avatar />
-                                    <Text style={styles.senderText}>
-                                        {data.message}
-                                    </Text>
-                                </View>
-                            )
+
+                        {messages.map(message =>
+                            <Text>{message}</Text>
                         )}
+                        {/*{messages.map(({ id, data}) =>*/}
+                        {/*    data.email === auth.currentUser.email ? (*/}
+                        {/*        <View key={id} style={styles.receiver}>*/}
+                        {/*                     <Avatar />*/}
+                        {/*                <Text style={styles.receiverText}>*/}
+                        {/*                     {data.message}*/}
+                        {/*                 </Text>*/}
+                        {/*        </View>*/}
+                        {/*    ) : (*/}
+                        {/*        <View style={styles.sender}>*/}
+                        {/*            <Avatar />*/}
+                        {/*            <Text style={styles.senderText}>*/}
+                        {/*                {data.message}*/}
+                        {/*            </Text>*/}
+                        {/*        </View>*/}
+                        {/*    )*/}
+                        {/*)}*/}
                     {/*    chat goes in here    */}
 
                     </ScrollView>
