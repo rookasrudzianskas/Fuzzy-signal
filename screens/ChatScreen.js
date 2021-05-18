@@ -18,21 +18,36 @@ import db from "../firebase";
 const ChatScreen = ({ navigation, route }) => {
 
     const [input, setInput] = useState('');
-
+    const [messages, setMessages] = useState('');
+    console.log(messages)
     const sendMessage = () => {
         Keyboard.dismiss();
         // we haev params in here
+        //Iraso
         db.collection("chats").doc(route.params.id).collection("messages").add({
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
             message: input,
             displayName: auth.currentUser.displayName,
             email: auth.currentUser.email,
             photoURL: auth.currentUser.photoURL,
-        })
+        }).catch(error => alert(error))
 
         setInput('')
 
     };
+
+    useLayoutEffect(() => {
+        const unsubscribe = db.collection("chats").doc(route.params.id).collection("messages").orderBy("timestamp", "desc").onSnapshot(snapshot => {
+            setMessages(
+                snapshot.docs?.map(doc => ({
+                    id:  doc.id,
+                    data: doc.data(),
+                }))
+            )
+        });
+
+        return unsubscribe;
+    }, [route]);
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -75,6 +90,28 @@ const ChatScreen = ({ navigation, route }) => {
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} >
                     <>
                     <ScrollView>
+                        {/*{messages.map(({ id, data}) => {*/}
+                        {/*    <View>*/}
+                        {/*        <Text>{data.message}</Text>*/}
+                        {/*    </View>*/}
+                        {/*})}*/}
+                        {messages.map(({ id, data}) =>
+                            data.email === auth.currentUser.email ? (
+                                <View key={id} style={styles.receiver}>
+                                             <Avatar />
+                                        <Text style={styles.receiverText}>
+                                             {data.message}
+                                         </Text>
+                                </View>
+                            ) : (
+                                <View style={styles.sender}>
+                                    <Avatar />
+                                    <Text style={styles.senderText}>
+                                        {data.message}
+                                    </Text>
+                                </View>
+                            )
+                        )}
                     {/*    chat goes in here    */}
 
                     </ScrollView>
@@ -99,6 +136,17 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         // marginTop: "175%",
+    },
+
+    receiver: {
+        padding: "15px",
+        backgroundColor: "#ECECEC",
+        alignSelf: "flex-end",
+        borderRadius: 20,
+        marginRight: 15,
+        marginBottom: 20,
+        maxWidth: "80%",
+        position: "relative",
     },
 
     footer: {
