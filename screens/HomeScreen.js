@@ -5,7 +5,7 @@ import {Avatar} from "react-native-elements";
 import { auth } from "../firebase";
 import {AntDesign, Entypo, Foundation, SimpleLineIcons} from "@expo/vector-icons";
 import db from "../firebase";
-
+import firebase from "firebase"
 const HomeScreen = ({ navigation }) => {
 
     const [chats, setChats] = useState();
@@ -68,11 +68,11 @@ const HomeScreen = ({ navigation }) => {
 
     return (
         <SafeAreaView>
-            <ScrollView>
+            <ScrollView style={styles.container}>
                 {/*for evry chat room, I want to render the component with the props */}
                 {/*destructuring everything to make the life easier in another component, to access directly and not per something*/}
-                {chats?.map(({ id, data: { chatName }}) => (
-                    <CustomListItem key={id} chatName={chatName} id={id} />
+                {chats?.map(({ id, data: { chatName, timestamp }}) => (
+                    <CustomListItem key={id} chatName={chatName} id={id} timestamp={timestamp}/>
                 ))}
             </ScrollView>
         </SafeAreaView>
@@ -81,4 +81,10 @@ const HomeScreen = ({ navigation }) => {
 
 export default HomeScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    container: {
+        height: "100%",
+
+    }
+
+})

@@ -5,6 +5,7 @@ import {Icon} from "react-native-elements";
 import {AntDesign, Entypo, Foundation, SimpleLineIcons} from "@expo/vector-icons";
 import { Button } from 'react-native-elements';
 import db from "../firebase";
+import firebase from "firebase";
 const AddChatScreen = ({ navigation }) => {
 
     const [input, setInput] = useState("");
@@ -19,7 +20,8 @@ const AddChatScreen = ({ navigation }) => {
     const createChat = async () => {
         // adds new chat to the firebase
         await db.collection('chats').add({
-            chatName: input
+            chatName: input,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         }).then(() => {
             navigation.goBack()
         }).catch(error => alert(error));
@@ -38,7 +40,8 @@ export default AddChatScreen
 const styles = StyleSheet.create({
    container: {
        backgroundColor: "white",
-       padding: "30px",
+       padding: "15%",
+       paddingTop: "50%",
        height: "100%"
    }
 });

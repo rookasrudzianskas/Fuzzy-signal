@@ -2,9 +2,9 @@ import React from "react";
 import {StyleSheet, Text, View} from "react-native"
 import {ListItem, Avatar} from "react-native-elements";
 
-const CustomListItem = ({ id, chatName, enterChat }) => {
+const CustomListItem = ({ id, chatName, enterChat, timestamp }) => {
     return (
-        <ListItem>
+        <ListItem key={id} bottomDivider>
             <Avatar
                 rounded
                 source={{uri: "https://www.vhv.rs/dpng/d/505-5058560_person-placeholder-image-free-hd-png-download.png"}}
@@ -12,11 +12,11 @@ const CustomListItem = ({ id, chatName, enterChat }) => {
 
             <ListItem.Content>
                 <ListItem.Title style={{ fontWeight: "800" }}>
-                    Rookas Chat
+                    {chatName}
                 </ListItem.Title>
 
                 <ListItem.Subtitle numberOfLines={1}  ellipsizeMode="tail">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, mollitia.
+                    ABC
                 </ListItem.Subtitle>
             </ListItem.Content>
         </ListItem>
