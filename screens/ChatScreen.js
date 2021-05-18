@@ -368,23 +368,40 @@ const ChatScreen = ({ navigation, route }) => {
                     <>
                     <ScrollView>
 
-                        {messages?.map(({ id, data}) => (
+                        {messages.map(({ id, data }) =>
                             data.email === auth.currentUser.email ? (
-                                <View key={id} style={styles.receiver}>
-                                             <Avatar />
-                                        <Text style={styles.receiverText}>
-                                             {data.message}
-                                         </Text>
+                                <View key={id} style={styles.sender}>
+                                    <Avatar
+                                        rounded
+                                        // web
+                                        containerStyle={{
+                                            position: "absolute",
+                                            bottom: -15,
+                                            right: -5,
+                                        }}
+                                        size={24}
+                                        source={{ uri: data.photoURL }}
+                                    />
+                                    <Text style={styles.senderText}>{data.message}</Text>
                                 </View>
                             ) : (
-                                <View style={styles.sender}>
-                                    <Avatar />
-                                    <Text style={styles.senderText}>
-                                        {data.message}
-                                    </Text>
+                                <View key={id} style={styles.reciever}>
+                                    <Avatar
+                                        rounded
+                                        // web
+                                        containerStyle={{
+                                            position: "absolute",
+                                            bottom: -15,
+                                            left: -5,
+                                        }}
+                                        size={24}
+                                        source={{ uri: data.photoURL }}
+                                    />
+                                    <Text style={styles.recieverName}>{data.displayName}</Text>
+                                    <Text style={styles.recieverText}>{data.message}</Text>
                                 </View>
                             )
-                        ))}
+                        )}
                     {/*    chat goes in here    */}
 
                     </ScrollView>
@@ -412,22 +429,47 @@ const styles = StyleSheet.create({
         // marginTop: "175%",
     },
 
-    receiver: {
-        padding: "15px",
+    reciever: {
+        padding: 10,
+        backgroundColor: "#2B68E6",
+        alignSelf: "flex-start",
+        borderRadius: 20,
+        marginLeft: 15,
+        maxWidth: "80%",
+        position: "relative",
+        marginBottom: 10,
+    },
+    recieverName: {
+        left: 10,
+        paddingRight: 10,
+        fontSize: 12,
+        color: "white",
+    },
+    sender: {
+        padding: 15,
         backgroundColor: "#ECECEC",
         alignSelf: "flex-end",
         borderRadius: 20,
         marginRight: 15,
-        marginBottom: 20,
+        marginBottom: 10,
         maxWidth: "80%",
         position: "relative",
+        marginTop: 10
+    },
+    recieverText: {
+        color: "white",
+        fontWeight: "500",
+    },
+    senderText: {
+        color: "black",
+        fontWeight: "500",
     },
 
     footer: {
         flexDirection: "row",
-        alignItems: "center",
-        width: "100%",
         padding: 15,
+        width: "100%",
+        alignItems: "center",
     },
 
     textInput: {
