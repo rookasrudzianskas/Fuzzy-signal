@@ -1,12 +1,12 @@
 import React, {useLayoutEffect, useState} from "react";
 import {
-    Image,
+    Image, Keyboard,
     KeyboardAvoidingView, Platform,
     SafeAreaView, ScrollView,
     StatusBar,
     StyleSheet,
     Text, TextInput,
-    TouchableOpacity,
+    TouchableOpacity, TouchableWithoutFeedback,
     View
 } from "react-native"
 import {Avatar} from "react-native-elements";
@@ -18,6 +18,7 @@ const ChatScreen = ({ navigation, route }) => {
     const [input, setInput] = useState();
 
     const sendMessage = () => {
+        Keyboard.dismiss();
 
     };
 
@@ -58,7 +59,9 @@ const ChatScreen = ({ navigation, route }) => {
         <SafeAreaView style={{ flex: 1, backgroundColor: "white", }} >
             <StatusBar style="auto" />
             <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={styles.container} keyboardVerticalOffset={90}>
-                <>
+
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss} >
+                    <>
                     <ScrollView>
                     {/*    chat goes in here    */}
 
@@ -69,8 +72,10 @@ const ChatScreen = ({ navigation, route }) => {
                             <Ionicons name="send" size={24} color="#2B68E6" />
                         </TouchableOpacity>
                     </View>
-                </>
+                    </>
+                </TouchableWithoutFeedback>
             </KeyboardAvoidingView>
+
             {/*</Image>*/}
         </SafeAreaView>
     )
