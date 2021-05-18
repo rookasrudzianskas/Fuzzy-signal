@@ -66,13 +66,20 @@ const HomeScreen = ({ navigation }) => {
         });
     }, [navigation]);
 
+    const enterChat = (id, chatName) => {
+        navigation.navigate('Chat', {
+            id: id,
+            chatName: chatName,
+        })
+    }
+
     return (
         <SafeAreaView>
             <ScrollView style={styles.container}>
                 {/*for evry chat room, I want to render the component with the props */}
                 {/*destructuring everything to make the life easier in another component, to access directly and not per something*/}
                 {chats?.map(({ id, data: { chatName, timestamp }}) => (
-                    <CustomListItem key={id} chatName={chatName} id={id} timestamp={timestamp}/>
+                    <CustomListItem key={id} chatName={chatName} id={id} timestamp={timestamp} enterChat={enterChat}/>
                 ))}
             </ScrollView>
         </SafeAreaView>
