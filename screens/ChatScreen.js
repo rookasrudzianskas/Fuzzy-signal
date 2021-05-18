@@ -407,7 +407,7 @@ const ChatScreen = ({ navigation, route }) => {
                     </ScrollView>
 
                     <View style={styles.footer}>
-                        <TextInput onSubmitEditing={sendMessage} placeholder="Rookas Message" style={styles.textInput} value={input} onChangeText={text => setInput(text)}/>
+                        <TextInput onSubmitEditing={sendMessage} placeholder={`${auth.currentUser.displayName}, send a message 🚀`} style={styles.textInput} value={input} onChangeText={text => setInput(text)}/>
                         <TouchableOpacity activeOpacity={0.5} onPress={sendMessage}>
                             <Ionicons name="send" size={24} color="#2B68E6" />
                         </TouchableOpacity>
