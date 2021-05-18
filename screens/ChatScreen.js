@@ -1,4 +1,4 @@
-import React, {useLayoutEffect} from "react";
+import React, {useLayoutEffect, useState} from "react";
 import {
     Image,
     KeyboardAvoidingView, Platform,
@@ -14,6 +14,12 @@ import { AntDesign, FontAwesome, Ionicons } from "@expo/vector-icons";
 import {ImageBackground} from "react-native";
 
 const ChatScreen = ({ navigation, route }) => {
+
+    const [input, setInput] = useState();
+
+    const sendMessage = () => {
+
+    };
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -49,16 +55,7 @@ const ChatScreen = ({ navigation, route }) => {
 
     // style={{ flex: 1, backgroundImage: "https://theabbie.github.io/blog/assets/official-whatsapp-background-image.jpg" }}
     return (
-        <SafeAreaView  >
-            {/*<Image*/}
-            {/*    source={{uri: 'https://theabbie.github.io/blog/assets/official-whatsapp-background-image.jpg'}}*/}
-            {/*    style={{*/}
-            {/*        flex: 1,*/}
-            {/*        width: null,*/}
-            {/*        height: null,*/}
-            {/*        resizeMode: 'stretch',*/}
-            {/*    }}*/}
-            {/*>*/}
+        <SafeAreaView style={{ flex: 1, backgroundColor: "white", }} >
             <StatusBar style="auto" />
             <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={styles.container} keyboardVerticalOffset={90}>
                 <>
@@ -67,7 +64,10 @@ const ChatScreen = ({ navigation, route }) => {
 
                     </ScrollView>
                     <View style={styles.footer}>
-                        <TextInput placeholder="Rookas Message"/>
+                        <TextInput placeholder="Rookas Message" style={styles.textInput} value={input} onChangeText={text => setInput(text)}/>
+                        <TouchableOpacity activeOpacity={0.5} onPress={sendMessage}>
+                            <Ionicons name="send" size={24} color="#2B68E6" />
+                        </TouchableOpacity>
                     </View>
                 </>
             </KeyboardAvoidingView>
@@ -80,10 +80,27 @@ export default ChatScreen
 
 const styles = StyleSheet.create({
     container: {
-
+        flex: 1,
+        // marginTop: "175%",
     },
 
     footer: {
+        flexDirection: "row",
+        alignItems: "center",
+        width: "100%",
+        padding: 15,
+    },
 
+    textInput: {
+        bottom: 0,
+        height: 40,
+        flex: 1,
+        marginRight: 15,
+        borderColor: "transparent",
+        backgroundColor: "#ECECEC",
+        borderWidth: 1,
+        padding: 10,
+        color: "grey",
+        borderRadius: 30,
     },
 })
