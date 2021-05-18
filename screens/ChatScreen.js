@@ -12,13 +12,25 @@ import {
 import {Avatar} from "react-native-elements";
 import { AntDesign, FontAwesome, Ionicons } from "@expo/vector-icons";
 import {ImageBackground} from "react-native";
-
+import firebase from "firebase";
+import {auth} from "../firebase";
+import db from "../firebase";
 const ChatScreen = ({ navigation, route }) => {
 
-    const [input, setInput] = useState();
+    const [input, setInput] = useState('');
 
     const sendMessage = () => {
         Keyboard.dismiss();
+        // we haev params in here
+        db.collection("chats").doc(route.params.id).collection("messages").add({
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            message: input,
+            displayName: auth.currentUser.displayName,
+            email: auth.currentUser.email,
+            photoURL: auth.currentUser.photoURL,
+        })
+
+        setInput('')
 
     };
 
@@ -67,7 +79,7 @@ const ChatScreen = ({ navigation, route }) => {
 
                     </ScrollView>
                     <View style={styles.footer}>
-                        <TextInput placeholder="Rookas Message" style={styles.textInput} value={input} onChangeText={text => setInput(text)}/>
+                        <TextInput onSubmitEditing={sendMessage} placeholder="Rookas Message" style={styles.textInput} value={input} onChangeText={text => setInput(text)}/>
                         <TouchableOpacity activeOpacity={0.5} onPress={sendMessage}>
                             <Ionicons name="send" size={24} color="#2B68E6" />
                         </TouchableOpacity>
