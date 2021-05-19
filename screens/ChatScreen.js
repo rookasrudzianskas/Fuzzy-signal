@@ -150,9 +150,7 @@ export default ChatScreen
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        // marginTop: "175%",
     },
-
     reciever: {
         padding: 10,
         backgroundColor: "#2B68E6",
@@ -162,6 +160,8 @@ const styles = StyleSheet.create({
         maxWidth: "80%",
         position: "relative",
         marginBottom: 10,
+        marginTop: "3%",
+
     },
     recieverName: {
         left: 10,
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         maxWidth: "80%",
         position: "relative",
-        marginTop: 10
+        marginTop: "3%",
     },
     recieverText: {
         color: "white",
@@ -188,14 +188,12 @@ const styles = StyleSheet.create({
         color: "black",
         fontWeight: "500",
     },
-
     footer: {
         flexDirection: "row",
         padding: 15,
         width: "100%",
         alignItems: "center",
     },
-
     textInput: {
         bottom: 0,
         height: 40,
@@ -203,9 +201,9 @@ const styles = StyleSheet.create({
         marginRight: 15,
         borderColor: "transparent",
         backgroundColor: "#ECECEC",
-        borderWidth: 1,
         padding: 10,
+        borderWidth: 1,
         color: "grey",
         borderRadius: 30,
     },
-})
+});
