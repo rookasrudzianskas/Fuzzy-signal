@@ -22,7 +22,7 @@ const ChatScreen = ({ navigation, route }) => {
     console.log(typeof(messages));
     console.log(messages)
     const sendMessage = () => {
-        Keyboard.dismiss();
+        // Keyboard.dismiss();
         // we haev params in here
         //Iraso
         db.collection("chats").doc(route.params.id).collection("messages").add({
