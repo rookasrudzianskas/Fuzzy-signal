@@ -19,6 +19,8 @@ const ChatScreen = ({ navigation, route }) => {
 
     const [input, setInput] = useState('');
     const [messages, setMessages] = useState([]);
+    const [disabled,setDisabled]=useState(false)
+
     console.log(typeof(messages));
     console.log(messages)
     const sendMessage = () => {
@@ -132,7 +134,7 @@ const ChatScreen = ({ navigation, route }) => {
 
                     <View style={styles.footer}>
                         <TextInput onSubmitEditing={sendMessage} placeholder={`${auth.currentUser.displayName}, send a message 🚀`} style={styles.textInput} value={input} onChangeText={text => setInput(text)}/>
-                        <TouchableOpacity activeOpacity={0.5} onPress={sendMessage}>
+                        <TouchableOpacity  activeOpacity={0.5} onPress={sendMessage}>
                             <Ionicons name="send" size={24} color="#2B68E6" />
                         </TouchableOpacity>
                     </View>
@@ -206,4 +208,8 @@ const styles = StyleSheet.create({
         color: "grey",
         borderRadius: 30,
     },
+
+    buttonDisabled: {
+        backgroundColor: "#0F0"
+    }
 });
