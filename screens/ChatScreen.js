@@ -59,7 +59,7 @@ const ChatScreen = ({ navigation, route }) => {
             headerBackTitleVisible: false,
             headerTitle: () => (
                 <View style={{ flexDirection: "row", alignItems: "center", }}>
-                    <Avatar rounded source={{uri: "https://www.vhv.rs/dpng/d/505-5058560_person-placeholder-image-free-hd-png-download.png"}}/>
+                    <Avatar rounded source={{uri: messages[0]?.data.photoURL || "https://www.vhv.rs/dpng/d/505-5058560_person-placeholder-image-free-hd-png-download.png" }}/>
                     <Text style={{ color: "white", marginLeft: 10, fontWeight: "700", }}>{route.params.chatName}</Text>
                 </View>
             ),
