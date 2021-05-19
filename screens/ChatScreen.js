@@ -81,6 +81,7 @@ const ChatScreen = ({ navigation, route }) => {
                   </TouchableOpacity>
               </View>
             ),
+
         });
     }, [navigation, messages]);
 
